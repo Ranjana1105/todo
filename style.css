@@ -1,66 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Animated gradient background */
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    height: 100vh;
+    background: linear-gradient(
+        270deg,
+        #ff6ec4,
+        #7873f5,
+        #4ade80,
+        #facc15,
+        #fb7185
+    );
+    background-size: 1000% 1000%;
+    animation: gradientMove 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container {
-    width: 350px;
-    background-color: white;
-    margin: 100px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-h2 {
+/* Glass card */
+.todo-glass {
+    width: 380px;
+    padding: 25px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    animation: popIn 0.8s ease;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.todo-glass h2 {
     text-align: center;
+    color: white;
+    margin-bottom: 20px;
 }
 
-.input-box {
+/* Input */
+.input-area {
     display: flex;
     gap: 10px;
 }
 
-input {
+.input-area input {
     flex: 1;
-    padding: 10px;
-    font-size: 16px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 12px;
+    border-radius: 12px;
     border: none;
+    outline: none;
+}
+
+.input-area button {
+    width: 48px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f472b6, #fb7185);
+    color: white;
+    font-size: 22px;
     cursor: pointer;
+    transition: transform 0.2s;
 }
 
-button:hover {
-    background-color: #45a049;
+.input-area button:active {
+    transform: scale(0.9);
 }
 
+/* Task list */
 ul {
     list-style: none;
-    padding: 0;
     margin-top: 20px;
 }
 
 li {
-    background: #eee;
-    padding: 10px;
+    background: rgba(255,255,255,0.85);
+    padding: 12px;
     margin-bottom: 10px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    animation: slideIn 0.4s ease;
 }
 
+@keyframes slideIn {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Completed animation */
 li.completed {
     text-decoration: line-through;
-    color: gray;
+    opacity: 0.6;
+    animation: done 0.3s ease;
 }
 
-.delete {
-    color: red;
-    cursor: pointer;
-    font-weight: bold;
+@keyframes done {
+    from { background: #bbf7d0; }
+    to { background: rgba(255,255,255,0.85); }
 }
+
+/* Delete animation */
+li.remove {
+    animation: slideOut 0.3s ease forwards;
+}
+
+@keyframes slideOut {
+    to {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+}
+
+.delete-btn {
+    font-size: 18px;
+    color: crimson;
+    cursor: pointer;
+}
+
