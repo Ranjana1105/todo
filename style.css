@@ -2,140 +2,100 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
-/* Animated gradient background */
 body {
     height: 100vh;
-    background: linear-gradient(
-        270deg,
-        #ff6ec4,
-        #7873f5,
-        #4ade80,
-        #facc15,
-        #fb7185
-    );
-    background-size: 1000% 1000%;
-    animation: gradientMove 12s ease infinite;
+    background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Glass card */
-.todo-glass {
-    width: 380px;
+.app {
+    background: white;
+    width: 360px;
     padding: 25px;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(15px);
-    border-radius: 25px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-    animation: popIn 0.8s ease;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: pop 0.6s ease;
 }
 
-@keyframes popIn {
+@keyframes pop {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-.todo-glass h2 {
+h1 {
     text-align: center;
-    color: white;
     margin-bottom: 20px;
+    color: #444;
 }
 
-/* Input */
-.input-area {
+.input-box {
     display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
-.input-area input {
-    flex: 1;
-    padding: 12px;
-    border-radius: 12px;
+input, button {
+    padding: 10px;
+    border-radius: 10px;
     border: none;
     outline: none;
 }
 
-.input-area button {
-    width: 48px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #f472b6, #fb7185);
+input {
+    background: #f1f1f1;
+}
+
+button {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white;
-    font-size: 22px;
     cursor: pointer;
-    transition: transform 0.2s;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.input-area button:active {
-    transform: scale(0.9);
+button:hover {
+    transform: scale(1.05);
 }
 
-/* Task list */
 ul {
     list-style: none;
     margin-top: 20px;
 }
 
 li {
-    background: rgba(255,255,255,0.85);
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    color: white;
     padding: 12px;
-    margin-bottom: 10px;
     border-radius: 12px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    animation: slideIn 0.4s ease;
+    animation: slide 0.4s ease;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateX(-30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+@keyframes slide {
+    from { transform: translateX(-30px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
-/* Completed animation */
-li.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-    animation: done 0.3s ease;
+.time {
+    font-size: 12px;
+    opacity: 0.9;
 }
 
-@keyframes done {
-    from { background: #bbf7d0; }
-    to { background: rgba(255,255,255,0.85); }
-}
-
-/* Delete animation */
-li.remove {
-    animation: slideOut 0.3s ease forwards;
-}
-
-@keyframes slideOut {
-    to {
-        transform: translateX(50px);
-        opacity: 0;
-    }
-}
-
-.delete-btn {
-    font-size: 18px;
-    color: crimson;
+.delete {
+    background: crimson;
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 6px;
     cursor: pointer;
 }
+
 

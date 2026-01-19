@@ -1,31 +1,26 @@
+let taskList = document.getElementById("taskList");
+
 function addTask() {
-    const input = document.getElementById("taskInput");
-    const taskText = input.value.trim();
+    let taskInput = document.getElementById("task");
+    let timeInput = document.getElementById("time");
 
-    if (taskText === "") return;
+    if (taskInput.value === "" || timeInput.value === "") {
+        alert("Please enter task and time!");
+        return;
+    }
 
-    const li = document.createElement("li");
-    li.textContent = taskText;
+    let li = document.createElement("li");
 
-    li.onclick = () => {
-        li.classList.toggle("completed");
-    };
+    li.innerHTML = `
+        <div>
+            <strong>${taskInput.value}</strong><br>
+            <span class="time">⏰ ${new Date(timeInput.value).toLocaleString()}</span>
+        </div>
+        <button class="delete" onclick="this.parentElement.remove()">X</button>
+    `;
 
-    const del = document.createElement("span");
-    del.textContent = "🗑";
-    del.className = "delete-btn";
+    taskList.appendChild(li);
 
-    del.onclick = (e) => {
-        e.stopPropagation();
-        li.classList.add("remove");
-        setTimeout(() => {
-            li.remove();
-        }, 300);
-    };
-
-    li.appendChild(del);
-    document.getElementById("taskList").appendChild(li);
-
-    input.value = "";
+    taskInput.value = "";
+    timeInput.value = "";
 }
-
